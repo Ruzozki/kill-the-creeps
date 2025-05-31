@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1nlivm62hjxd"]
+
+[ext_resource type="Script" path="res://world/hud.gd" id="1_qut25"]
+[ext_resource type="FontFile" uid="uid://3xs45qrlswr1" path="res://Assets/Fonts/fonts/Xolonium-Regular.ttf" id="1_sl3ku"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_fd8sm"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_l8mkw"]
+events = [SubResource("InputEventAction_fd8sm")]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_qut25")
+
+[node name="Score_label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -158.0
+offset_top = 1.0
+offset_right = 113.0
+offset_bottom = 79.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_sl3ku")
+theme_override_font_sizes/font_size = 64
+text = "           0"
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -79.5
+offset_right = 0.5
+offset_bottom = 79.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_sl3ku")
+theme_override_font_sizes/font_size = 64
+text = "         kill The Creeps!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Start_Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 220.0
+offset_right = 100.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_sl3ku")
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_l8mkw")
+text = "Start"
+
+[node name="Message_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="Start_Button" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="Message_timer" to="." method="_on_message_timer_timeout"]
